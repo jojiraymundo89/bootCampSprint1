@@ -1,0 +1,53 @@
+{
+  "uid" : "21e83a8ad6400656",
+  "name" : "Then I verify low and high temp displayed correctly on parent bar",
+  "title" : "Then I verify low and high temp displayed correctly on parent bar",
+  "time" : {
+    "start" : 1520719549370,
+    "stop" : 1520719549370,
+    "duration" : 0
+  },
+  "summary" : {
+    "attachments" : 0,
+    "steps" : 0
+  },
+  "failure" : null,
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "PASSED",
+  "testId" : null,
+  "suite" : {
+    "uid" : "6dc9b17a07e63b6d",
+    "name" : "Verify low and high temp displayed correctly on parent bar",
+    "title" : "Verify low and high temp displayed correctly on parent bar"
+  },
+  "steps" : [ ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "labels" : [ {
+    "name" : "host",
+    "value" : "Joselitos-MBP.home"
+  }, {
+    "name" : "suite-title",
+    "value" : "Verify low and high temp displayed correctly on parent bar"
+  }, {
+    "name" : "language",
+    "value" : "JAVA"
+  }, {
+    "name" : "thread",
+    "value" : "1435@Joselitos-MBP.home.main(1)"
+  }, {
+    "name" : "story",
+    "value" : "Verify low and high temp displayed correctly on parent bar"
+  }, {
+    "name" : "feature",
+    "value" : "Verify days of the week are displayed correctly"
+  }, {
+    "name" : "suite-name",
+    "value" : "Verify low and high temp displayed correctly on parent bar"
+  }, {
+    "name" : "framework",
+    "value" : "CucumberJVM"
+  } ],
+  "parameters" : [ ]
+}

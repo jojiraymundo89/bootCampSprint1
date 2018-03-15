@@ -1,0 +1,53 @@
+{
+  "uid" : "b5be9abc2565f3aa",
+  "name" : "Given I am on homepage of darkSky",
+  "title" : "Given I am on homepage of darkSky",
+  "time" : {
+    "start" : 1520719544099,
+    "stop" : 1520719544104,
+    "duration" : 5
+  },
+  "summary" : {
+    "attachments" : 0,
+    "steps" : 0
+  },
+  "failure" : null,
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "PASSED",
+  "testId" : null,
+  "suite" : {
+    "uid" : "30af20981aea67f3",
+    "name" : "Verify days of the week are displayed correctly",
+    "title" : "Verify days of the week are displayed correctly"
+  },
+  "steps" : [ ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "labels" : [ {
+    "name" : "host",
+    "value" : "Joselitos-MBP.home"
+  }, {
+    "name" : "language",
+    "value" : "JAVA"
+  }, {
+    "name" : "suite-title",
+    "value" : "Verify days of the week are displayed correctly"
+  }, {
+    "name" : "thread",
+    "value" : "1435@Joselitos-MBP.home.main(1)"
+  }, {
+    "name" : "story",
+    "value" : "Verify days of the week are displayed correctly"
+  }, {
+    "name" : "feature",
+    "value" : "Verify days of the week are displayed correctly"
+  }, {
+    "name" : "suite-name",
+    "value" : "Verify days of the week are displayed correctly"
+  }, {
+    "name" : "framework",
+    "value" : "CucumberJVM"
+  } ],
+  "parameters" : [ ]
+}

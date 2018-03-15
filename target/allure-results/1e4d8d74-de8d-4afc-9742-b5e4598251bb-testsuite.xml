@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:test-suite start="1520719544052" stop="1520719545119" version="1.4.15" xmlns:ns2="urn:model.allure.qatools.yandex.ru">
+    <name>Verify days of the week are displayed correctly</name>
+    <title>Verify days of the week are displayed correctly</title>
+    <test-cases>
+        <test-case start="1520719544099" stop="1520719544104" status="passed">
+            <name>Given I am on homepage of darkSky</name>
+            <title>Given I am on homepage of darkSky</title>
+            <steps/>
+            <attachments/>
+            <labels>
+                <label name="host" value="Joselitos-MBP.home"/>
+                <label name="thread" value="1435@Joselitos-MBP.home.main(1)"/>
+            </labels>
+        </test-case>
+        <test-case start="1520719544534" stop="1520719544534" status="passed">
+            <name>When I scroll to days of the week</name>
+            <title>When I scroll to days of the week</title>
+            <steps/>
+            <attachments/>
+            <labels>
+                <label name="host" value="Joselitos-MBP.home"/>
+                <label name="thread" value="1435@Joselitos-MBP.home.main(1)"/>
+            </labels>
+        </test-case>
+        <test-case start="1520719544989" stop="1520719544989" status="passed">
+            <name>Then I verify days of the week is displayed correctly</name>
+            <title>Then I verify days of the week is displayed correctly</title>
+            <steps/>
+            <attachments/>
+            <labels>
+                <label name="host" value="Joselitos-MBP.home"/>
+                <label name="thread" value="1435@Joselitos-MBP.home.main(1)"/>
+            </labels>
+        </test-case>
+    </test-cases>
+    <labels>
+        <label name="story" value="Verify days of the week are displayed correctly"/>
+        <label name="feature" value="Verify days of the week are displayed correctly"/>
+        <label name="framework" value="CucumberJVM"/>
+        <label name="language" value="JAVA"/>
+    </labels>
+</ns2:test-suite>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:test-suite start="1520719548407" stop="1520719549494" version="1.4.15" xmlns:ns2="urn:model.allure.qatools.yandex.ru">
+    <name>Verify low and high temp displayed correctly on parent bar</name>
+    <title>Verify low and high temp displayed correctly on parent bar</title>
+    <test-cases>
+        <test-case start="1520719548407" stop="1520719548407" status="passed">
+            <name>Given I am on homepage of darkSky</name>
+            <title>Given I am on homepage of darkSky</title>
+            <steps/>
+            <attachments/>
+            <labels>
+                <label name="host" value="Joselitos-MBP.home"/>
+                <label name="thread" value="1435@Joselitos-MBP.home.main(1)"/>
+            </labels>
+        </test-case>
+        <test-case start="1520719549035" stop="1520719549035" status="passed">
+            <name>When I click on todays bar</name>
+            <title>When I click on todays bar</title>
+            <steps/>
+            <attachments/>
+            <labels>
+                <label name="host" value="Joselitos-MBP.home"/>
+                <label name="thread" value="1435@Joselitos-MBP.home.main(1)"/>
+            </labels>
+        </test-case>
+        <test-case start="1520719549370" stop="1520719549370" status="passed">
+            <name>Then I verify low and high temp displayed correctly on parent bar</name>
+            <title>Then I verify low and high temp displayed correctly on parent bar</title>
+            <steps/>
+            <attachments/>
+            <labels>
+                <label name="host" value="Joselitos-MBP.home"/>
+                <label name="thread" value="1435@Joselitos-MBP.home.main(1)"/>
+            </labels>
+        </test-case>
+    </test-cases>
+    <labels>
+        <label name="story" value="Verify low and high temp displayed correctly on parent bar"/>
+        <label name="feature" value="Verify days of the week are displayed correctly"/>
+        <label name="framework" value="CucumberJVM"/>
+        <label name="language" value="JAVA"/>
+    </labels>
+</ns2:test-suite>

@@ -1,0 +1,69 @@
+{
+  "testCases" : [ {
+    "uid" : "d7444624b0893712",
+    "name" : "Given I am on homepage of darkSky",
+    "title" : "Given I am on homepage of darkSky",
+    "time" : {
+      "start" : 1520719548407,
+      "stop" : 1520719548407,
+      "duration" : 0
+    },
+    "severity" : "NORMAL",
+    "status" : "PASSED"
+  }, {
+    "uid" : "8d781a34c3d5e75f",
+    "name" : "When I click on todays bar",
+    "title" : "When I click on todays bar",
+    "time" : {
+      "start" : 1520719549035,
+      "stop" : 1520719549035,
+      "duration" : 0
+    },
+    "severity" : "NORMAL",
+    "status" : "PASSED"
+  }, {
+    "uid" : "21e83a8ad6400656",
+    "name" : "Then I verify low and high temp displayed correctly on parent bar",
+    "title" : "Then I verify low and high temp displayed correctly on parent bar",
+    "time" : {
+      "start" : 1520719549370,
+      "stop" : 1520719549370,
+      "duration" : 0
+    },
+    "severity" : "NORMAL",
+    "status" : "PASSED"
+  }, {
+    "uid" : "b5be9abc2565f3aa",
+    "name" : "Given I am on homepage of darkSky",
+    "title" : "Given I am on homepage of darkSky",
+    "time" : {
+      "start" : 1520719544099,
+      "stop" : 1520719544104,
+      "duration" : 5
+    },
+    "severity" : "NORMAL",
+    "status" : "PASSED"
+  }, {
+    "uid" : "abc079d9306fea76",
+    "name" : "When I scroll to days of the week",
+    "title" : "When I scroll to days of the week",
+    "time" : {
+      "start" : 1520719544534,
+      "stop" : 1520719544534,
+      "duration" : 0
+    },
+    "severity" : "NORMAL",
+    "status" : "PASSED"
+  }, {
+    "uid" : "60cf2babf6c55b11",
+    "name" : "Then I verify days of the week is displayed correctly",
+    "title" : "Then I verify days of the week is displayed correctly",
+    "time" : {
+      "start" : 1520719544989,
+      "stop" : 1520719544989,
+      "duration" : 0
+    },
+    "severity" : "NORMAL",
+    "status" : "PASSED"
+  } ]
+}

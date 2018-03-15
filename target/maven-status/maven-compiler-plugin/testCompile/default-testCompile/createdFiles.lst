@@ -1,0 +1,9 @@
+framework/BasePage$1.class
+stepdefinition/SharedSD.class
+stepdefinition/DarkSkySD.class
+util/ConfigReader.class
+framework/DarkSkyHomePage.class
+stepdefinition/HotelsSD.class
+framework/TestRunner.class
+framework/BasePage.class
+framework/HotelsHomePage.class
