@@ -193,12 +193,15 @@ public class BasePage {
         }
     }
 
-    public void searchString(By locator, String value) {
+    public void searchString(By locator, String value) throws InterruptedException {
 
             List<WebElement> list = getDriver().findElements(locator);
             for (WebElement element : list) {
+                Thread.sleep(100);
                 if (element.getText().contains(value)) {
+                    Thread.sleep(1000);
                     element.click();
+
                     break;
                 }
             }

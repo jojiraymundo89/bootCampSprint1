@@ -89,7 +89,7 @@ public class HotelsHomePage extends BasePage {
 
     public void enterSearchKey(String value) throws InterruptedException {
         setValueToInputField(destinationBox, value);
-        Thread.sleep(1000);
+        Thread.sleep(3000);
     }
 
     public void enterFinalDestination(String value) throws InterruptedException {
