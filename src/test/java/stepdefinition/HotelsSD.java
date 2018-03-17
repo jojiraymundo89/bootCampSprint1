@@ -41,7 +41,6 @@ public class HotelsSD {
 
     @And("^I enter (.+) as (search key|final destination)$")
     public void sendText(String value, String field) throws InterruptedException {
-        System.out.println(">>>>>>"+value+field);
         switch (field){
             case "search key":
                 hotelsHomePage.enterSearchKey(value);
@@ -57,15 +56,15 @@ public class HotelsSD {
         hotelsHomePage.selectTomorrowsDate();
     }
 
-    @And("^I select 6 days stay$")
-    public void selectCheckOut(){
-        hotelsHomePage.selectCheckOutDate();
+    @And("^I select ([0-9]) days stay$")
+    public void selectCheckOut(int n){
+        hotelsHomePage.selectCheckOutDate(n);
 
     }
 
     @Then("^I verify that number of nights is correctly displayed$")
     public void verifyCorrectDisplay(){
-        Assert.assertEquals(hotelsHomePage.numberOfNightsDisplayed(),"6","Not Equal");
+        Assert.assertEquals(hotelsHomePage.numberOfNightsDisplayed(),hotelsHomePage.days,"Not Equal");
     }
 
     @When("^I click on options$")
@@ -85,4 +84,8 @@ public class HotelsSD {
 
     }
 
+    @Then("^I verify that selection made is correctly displayed$")
+    public void verifySelectionDisplay(){
+    Assert.assertEquals(hotelsHomePage.selectionDisplayedCorrectly(),true,"Wrong Display");
+    }
 }

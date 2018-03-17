@@ -35,13 +35,13 @@ public class DarkSkySD {
     }
 
     @When("^I click on todays bar$")
-    public void clickOnTdaysBar(){
+    public void clickOnTdaysBar() throws InterruptedException {
         darkSkyHomePage.clickOnTodaysBar();
     }
 
     @Then("^I verify low and high temp displayed correctly on parent bar$")
     public void verifyLowHighTemp(){
-        Assert.assertEquals(darkSkyHomePage.parentTemp(),darkSkyHomePage.childTemp(),"Not Equal");
+        Assert.assertEquals(darkSkyHomePage.lowToHighTempDisplayedOnMotherAndChild(),true,"Not Equal");
     }
 
     @When("^I click on Time Machine$")

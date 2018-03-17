@@ -32,7 +32,7 @@ public class BasePage {
 
     public static WebElement webDriverFluentWait(final By locator) {
         Wait<WebDriver> wait = new FluentWait<WebDriver>(getDriver())
-                .withTimeout(15, TimeUnit.SECONDS)
+                .withTimeout(10, TimeUnit.SECONDS)
                 .pollingEvery(1, TimeUnit.SECONDS)
                 .ignoring(NoSuchElementException.class)
                 .ignoring(StaleElementReferenceException.class)
@@ -186,7 +186,6 @@ public class BasePage {
         getDriver().findElement(locator).sendKeys(searchKey);
         List<WebElement> list = getDriver().findElements(locator2);
         for (WebElement element : list) {
-            System.out.println(element.getText());
             if (element.getText().contains(choice)) {
                 element.click();
                 break;
@@ -194,17 +193,17 @@ public class BasePage {
         }
     }
 
-    public void searchString(By locator,String value) {
+    public void searchString(By locator, String value) {
 
             List<WebElement> list = getDriver().findElements(locator);
             for (WebElement element : list) {
-                //System.out.println(element.getText());
                 if (element.getText().contains(value)) {
                     element.click();
                     break;
                 }
             }
-    }
+        }
+
 
     public void spellOutString(By locator,String value) throws InterruptedException {
         String s = "";
@@ -215,7 +214,7 @@ public class BasePage {
             s = s.concat(Character.toString(charArray[i]));
             newS = s;
             s="";
-            Thread.sleep(250);
+            Thread.sleep(500);
             getDriver().findElement(locator).sendKeys(newS);
         }
     }
@@ -231,9 +230,8 @@ public class BasePage {
         return today;
     }
 
-    public Calendar selectDate (int year, int month, int date){
+    public Calendar calendar (){
         Calendar calendar = Calendar.getInstance();
-        calendar.set(year,month,date);
     return calendar;
     }
 
@@ -253,9 +251,9 @@ public class BasePage {
         Calendar calendar = Calendar.getInstance();
         return calendar;
     }
-    public String stringDate(Date datE){
+    public String stringDate(Date datE,String pattern){
         datE.getTime();
-        SimpleDateFormat sdf = new SimpleDateFormat("d-MMMM yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
         String dateString = sdf.format(datE);
         return dateString;
     }
