@@ -1,16 +1,9 @@
 package framework;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import stepdefinition.SharedSD;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.NoSuchElementException;
+
 
 /**
  * Created by joselitowilliamraymundo on 2/17/18.
@@ -31,9 +24,9 @@ public class HotelsHomePage extends BasePage {
 
     public boolean selected = false;
 
-    private By searchKey = By.id("qf-0q-destination");
+    private By destinationBox = By.id("qf-0q-destination");
 
-    private By results = By.xpath("/html/body/div[5]/table/tbody/tr/td");
+    private By results = By.xpath("//table[@cellspacing='0']/tbody/tr/td/div[2]");
 
     private By resultPanel = By.xpath("/html/body/div[5]");
 
@@ -47,7 +40,7 @@ public class HotelsHomePage extends BasePage {
 
     private By numRooms = By.id("qf-0q-rooms");
 
-    private By numAdult = By.id("qf-0q-room-0-adults");
+    private By numAdults = By.id("qf-0q-room-0-adults");
 
     private By numChildren = By.id("qf-0q-room-0-children");
 
@@ -57,25 +50,46 @@ public class HotelsHomePage extends BasePage {
 
     private By searchBtn = By.xpath("//button[@type='submit']");
 
-    private By multiDesOverlay = By.xpath("/html/body/div[12]");
+    private By destinationDisplay = By.xpath("//*[@id='search']/div[1]/div/h1");
 
-    private By radioBtn = By.xpath("/html/body/div[12]/div[1]/ul/li[6]/label/input");
+    private By datesDisplay =  By.xpath("//*[@id='search']/div[1]/div/div[1]/span[1]");
+
+    private By nightsDisplay = By.xpath("//*[@id='search']/div[1]/div/div[1]/span[2]");
+
+    private By otherDetails = By.xpath("//*[@id='search']/div[1]/div/div[1]/span[3]");
 
     private By overLaySearchBtn = By.xpath("/html/body/div[12]/div[2]/button");
 
-    Calendar cal = Calendar.getInstance();
+    public String days = null;
 
+    String room = "room";
+
+    String destination = null;
+
+    String adult = "adult";
+
+    String child = "child";
+
+    String inclusiveDates = null;
+
+    String numberOfNights = null;
+
+    String roomAndOccupants = null;
 
     public void clickOnDestinationBox() throws InterruptedException {
 
-        if (getDriver().findElement(overlay) != null) {
-            clickOn(closeOverlay);
-        }
+        /*try {
+            if (isEnabled(overlay)){
+                clickOn(closeOverlay);
+            }
+        }catch (NoSuchElementException e){
+            clickOn(searchKey);
+        }*/
     }
 
     public void enterSearchKey(String value) throws InterruptedException {
-        spellOutString(searchKey, value);
-        Thread.sleep(4000);
+        setValueToInputField(destinationBox, value);
+        Thread.sleep(3000);
     }
 
     public void enterFinalDestination(String value) throws InterruptedException {
@@ -85,25 +99,25 @@ public class HotelsHomePage extends BasePage {
     }
 
     public void selectTomorrowsDate() {
-        cal.add(Calendar.DAY_OF_MONTH, 1);
-        Date dateTomorrow = cal.getTime();
-        String stringTomorrow = stringDate(dateTomorrow);
-        String[] dateArray = stringTomorrow.split("-");
-        String day = dateArray[0];
-        String monthYear = dateArray[1];
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_MONTH,1);
+        Date checkIn = calendar.getTime();
+        String day = stringDate(checkIn,"d");
         clickOn(dateBox);
         selectElemFromList(daysLeftSide, day);
+        inclusiveDates = stringDate(checkIn,"EEE d - ");
     }
 
-    public void selectCheckOutDate() {
-        cal.add(Calendar.DAY_OF_MONTH, 6);
-        Date checkOut = cal.getTime();
-        String stringCheckOut = stringDate(checkOut);
-        String[] dateArray = stringCheckOut.split("-");
-        String day = dateArray[0];
-        String monthYear = dateArray[1];
+    public void selectCheckOutDate(int n) {
+        n++;
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_MONTH,n);
+        Date checkOut = calendar.getTime();
+        String day = stringDate(checkOut,"d");
         clickOn(dateBox2);
         selectElemFromList(daysLeftSide, day);
+        inclusiveDates = inclusiveDates+(stringDate(checkOut,"EEE d MMMM yyyy"));
+        days = Integer.toString(n-1);
     }
 
     public String numberOfNightsDisplayed() {
@@ -112,20 +126,49 @@ public class HotelsHomePage extends BasePage {
 
     public void selectOption() {
         selectFromDropDown(moreOptionsBtn, 2);
-
     }
 
     public void enterOtherOptions() {
         selectFromDropDown(numRooms, 0);
-        selectFromDropDown(numAdult, 1);
+        selectFromDropDown(numAdults, 1);
         selectFromDropDown(numChildren, 2);
         selectFromDropDown(ageChild1, 4);
         selectFromDropDown(ageChild2, 5);
-
+        if (Integer.parseInt(getSelectedOption(numRooms))>1){
+            room = "rooms";
+        }
+        if (Integer.parseInt(getSelectedOption(numAdults))>1){
+            adult = "adults";
+        }
+        if (Integer.parseInt(getSelectedOption(numChildren))>1){
+            child = "children";
+        }
+        roomAndOccupants =getSelectedOption(numRooms)+" "+room+", "+ getSelectedOption(numAdults)+" "+adult+", "+getSelectedOption(numChildren)+" "+child;
 
     }
 
     public void clickOnSearchBtn() {
+
+        destination = getAttribute(destinationBox,"value");
+        numberOfNights = getTextFromElement(numNights)+" nights";
         clickOn(searchBtn);
+        System.out.println(inclusiveDates);
+        System.out.println(getTextFromElement(datesDisplay));
+        System.out.println(getTextFromElement(nightsDisplay));
+        System.out.println(numberOfNights);
+        System.out.println(getTextFromElement(otherDetails));
+        System.out.println(roomAndOccupants);
+        System.out.println(destination);
+        System.out.println(getTextFromElement(destinationDisplay));
+
+    }
+
+    public boolean selectionDisplayedCorrectly(){
+        boolean correctDisplay = false;
+        if (getTextFromElement(destinationDisplay).equals(destination) && getTextFromElement(datesDisplay).equals(inclusiveDates)
+                && getTextFromElement(nightsDisplay).equals(numberOfNights) && getTextFromElement(otherDetails).equals(roomAndOccupants)){
+            correctDisplay = true;
+        }
+    return correctDisplay;
     }
 }

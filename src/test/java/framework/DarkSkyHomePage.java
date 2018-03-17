@@ -18,11 +18,7 @@ public class DarkSkyHomePage extends BasePage {
 
     public By darkSkyDays = By.className("name");
 
-    public By todaysBar = By.xpath("//*[@id='week']/a[1]");
-
-    public By parentTemp = By.xpath("//*[@id='week']/a[1]/span[2]/span[@class='minTemp' or @class='maxTemp']");
-
-    public By childTemp = By.xpath("//*[@id='week']/div[2]/div[1]/div[2]/div[1]/span/span[@class='temp']");
+    public By parentBar = By.xpath("//*/div[@id='week']/a");
 
     public By timeMachine = By.xpath("//*[@id='timeMachine']/div[2]/a");
 
@@ -39,6 +35,17 @@ public class DarkSkyHomePage extends BasePage {
     public By actualDateDisplay = By.xpath("//*[@id='main']/div[1]/div[1]/div");
 
     public String expectedDateDisplay = null;
+
+    public By parentMinTemp = By.xpath("//html//a/span[2]/span[1]");
+
+    public By parentMaxTemp = By.xpath("//html//a/span[2]/span[3]");
+
+    public By childMinTemp = By.xpath("//*[@id='week']/div/div[1]/div[2]/div[1]/span[1]/span[1]");
+
+    public By childMaxTemp = By.xpath("//*[@id='week']/div/div[1]/div[2]/div[1]/span[3]/span[1]");
+
+
+
 
     public List expectedDaysArrangement() {
         String[] days = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
@@ -71,29 +78,46 @@ public class DarkSkyHomePage extends BasePage {
         scrollToElement(eightDay);
     }
 
-    public void clickOnTodaysBar() {
+    public void clickOnTodaysBar() throws InterruptedException {
         scrollToElement(eightDay);
-        clickOn(todaysBar);
+        List<WebElement> elements =getDriver().findElements(parentBar);
+        for (WebElement element:elements){
+            element.click();
+        }
     }
 
-    public List parentTemp() {
-        List<String> combinedTemp = new ArrayList<>();
-        List<WebElement> list = getDriver().findElements(parentTemp);
-        for (WebElement element : list) {
-            combinedTemp.add(element.getText());
-        }
-        System.out.println("Parent Bar Temp " + combinedTemp);
-        return combinedTemp;
-    }
+    public boolean lowToHighTempDisplayedOnMotherAndChild() {
+        List<WebElement> parentMin =getDriver().findElements(parentMinTemp);
+        List<WebElement> parentMax =getDriver().findElements(parentMaxTemp);
+        List<WebElement> childMin =getDriver().findElements(childMinTemp);
+        List<WebElement> childMax =getDriver().findElements(childMaxTemp);
+        boolean validated = false;
+        List<String> pL = new ArrayList<>();
+        List<String> pH = new ArrayList<>();
+        List<String> cL = new ArrayList<>();
+        List<String> cH = new ArrayList<>();
 
-    public List childTemp() {
-        List<String> combinedTemp = new ArrayList<>();
-        List<WebElement> list = getDriver().findElements(childTemp);
-        for (WebElement element : list) {
-            combinedTemp.add(element.getText());
+        for(int i=0;i<parentMin.size();i++){
+            if (parentMin.get(i).getText().equals(childMin.get(i).getText()) &&
+                     parentMax.get(i).getText().equals(childMax.get(i).getText()) &&
+                     Integer.parseInt(parentMin.get(i).getText().replaceAll("[^a-zA-Z0-9]+",""))
+                             <=Integer.parseInt(parentMax.get(i).getText().replaceAll("[^a-zA-Z0-9]+",""))){
+                     validated = true;
+            }
+            System.out.println(Integer.parseInt(parentMin.get(i).getText().replaceAll("[^a-zA-Z0-9]+",""))+" <= "+Integer.parseInt(parentMax.get(i).getText().replaceAll("[^a-zA-Z0-9]+","")));
+            /*pL.add(parentMin.get(i).getText());
+            pH.add(parentMax.get(i).getText());
+            cL.add(childMin.get(i).getText());
+            cH.add(childMax.get(i).getText());*/
         }
-        System.out.println("Child Bar Temp " + combinedTemp);
-        return combinedTemp;
+        /*System.out.println(pL);
+        System.out.println(cL);
+        System.out.println(pH);
+        System.out.println(cH);
+        if (validated){
+            System.out.println("true");
+        };*/
+        return validated;
     }
 
     public void clickOnTimeMachine() {
@@ -102,11 +126,10 @@ public class DarkSkyHomePage extends BasePage {
     }
 
     public void selectTomorrowsDate() throws InterruptedException {
-
-        Calendar calTomorrow = Calendar.getInstance();
-        calTomorrow.add(Calendar.DAY_OF_MONTH, 1);
-        Date dateTomorrow = calTomorrow.getTime();
-        String stringTomorrow = stringDate(dateTomorrow);
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_MONTH,1);
+        Date tomorrow = calendar.getTime();
+        String stringTomorrow = stringDate(tomorrow,"d-MMMM yyyy");
         String[] dateArray = stringTomorrow.split("-");
         String day = dateArray[0];
         String monthYear = dateArray[1];
@@ -121,7 +144,7 @@ public class DarkSkyHomePage extends BasePage {
 
         String ordinalSuffix = getOrdinalSuffix(Integer.parseInt(day));
         DateFormat dateFormat = new SimpleDateFormat("EEEE, MMM d'" + ordinalSuffix + "', yyyy");
-        expectedDateDisplay = dateFormat.format(dateTomorrow);
+        expectedDateDisplay = dateFormat.format(tomorrow);
     }
 
     public boolean selectedDateNotClickable() {
