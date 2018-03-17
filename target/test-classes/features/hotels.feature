@@ -8,7 +8,7 @@ Feature: Verify user is able to successfully search for hotels
   Scenario: Verify selected dates display correct number of nights
     When I click on destination box
     And I enter California as search key
-    And I enter Los Angeles as final destination
+    And I enter Maryland as final destination
     And I select tomorrows date in Check-in date
     And I select 7 days stay
     Then I verify that number of nights is correctly displayed
